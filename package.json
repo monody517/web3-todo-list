@@ -1,0 +1,26 @@
+{
+  "name": "react_wagmi_template",
+  "version": "1.0.0",
+  "description": "quick start web3 template",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monody517/React_wagmi_template.git"
+  },
+  "keywords": [
+    "react",
+    "web3"
+  ],
+  "author": "jwp",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monody517/React_wagmi_template/issues"
+  },
+  "homepage": "https://github.com/monody517/React_wagmi_template#readme",
+  "devDependencies": {
+    "hardhat": "^2.18.0"
+  }
+}
