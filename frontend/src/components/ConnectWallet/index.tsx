@@ -2,7 +2,14 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const ConnectWallet = () => {
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        marginRight: "20px",
+      }}
+    >
       <ConnectButton />
     </div>
   );
