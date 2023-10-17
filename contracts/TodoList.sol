@@ -83,18 +83,21 @@ contract TodoList {
     ) public {
         if (_record[msg.sender] != 1) {
             _record[msg.sender] = 1;
-            _balances[msg.sender] = 2;
-            tokenAmount -= 2;
+            _balances[msg.sender] = 5;
+            tokenAmount -= 5;
         }
 
-        require(_balances[msg.sender] > 0, "dont have enought token");
+        require(
+            _balances[msg.sender] >= creatAmount,
+            "dont have enought token"
+        );
 
         taskCount++;
         tasks[msg.sender].push(
             Task(taskCount, _title, _content, _level, false)
         );
-        _balances[msg.sender] -= 1;
-        tokenAmount += 1;
+        _balances[msg.sender] -= creatAmount;
+        tokenAmount += creatAmount;
         emit TaskCreated(taskCount, _title, _content, _level, false);
     }
 
@@ -113,6 +116,8 @@ contract TodoList {
 
     function finishTask(uint256 _id) public {
         tasks[msg.sender][_id - 1].isCompleted = true;
+        _balances[msg.sender] += completeAmount;
+        tokenAmount -= completeAmount;
         emit TaskCompleted(_id - 1);
     }
 }
