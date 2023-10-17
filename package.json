@@ -22,5 +22,9 @@
   "homepage": "https://github.com/monody517/React_wagmi_template#readme",
   "devDependencies": {
     "hardhat": "^2.18.0"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
+    "hardhat-abi-exporter": "^2.10.1"
   }
 }

@@ -4,11 +4,12 @@ import { mainnet, polygon, goerli } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import "@rainbow-me/rainbowkit/styles.css";
 import ConnectWallet from "./components/ConnectWallet";
+import { API_KEY } from "../../env";
 
 function App() {
   const { chains, publicClient } = configureChains(
     [mainnet, polygon, goerli],
-    [alchemyProvider({ apiKey: "cy1N2W9isgaYYNco262XzIPN2e135kML" })]
+    [alchemyProvider({ apiKey: API_KEY })]
   );
 
   const { connectors } = getDefaultWallets({

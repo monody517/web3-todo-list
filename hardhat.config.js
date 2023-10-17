@@ -1,7 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
 require("hardhat-abi-exporter");
-
-const GOERLI_PRIVATE_KEY = "425afc37a946bf46236ef5523635311b7c682b9501b88e53dbfe24ad39072afc";
+import { GOERLI_PRIVATE_KEY,API_KEY } from './env';
 
 module.exports = {
   abiExporter: {
@@ -14,7 +13,7 @@ module.exports = {
   },
   networks: {
     goerli: {
-      url: `https://eth-mainnet.g.alchemy.com/v2/cy1N2W9isgaYYNco262XzIPN2e135kML`,
+      url: `https://eth-goerli.g.alchemy.com/v2/${API_KEY}`,
       accounts: [GOERLI_PRIVATE_KEY]
     }
     // goerli: {

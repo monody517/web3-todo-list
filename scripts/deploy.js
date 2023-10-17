@@ -7,11 +7,14 @@ const readline = require('readline').createInterface({
 async function main() {
   readline.question(`Which token you want to deploy?`, async (name) => {
     let tokenName, constructorParams;
-    switch (name) {}
+    switch (name) {
+      case 'TodoList':
+        tokenName = 'TodoList';
+    }
       // 获取合约文件
     const Token = await hre.ethers.getContractFactory(tokenName);
       // 获取合约部署的对象
-    const token = await Token.deploy(...constructorParams);
+    const token = await Token.deploy();
     await token.deployed();
       // 打印一下部署的结果
     console.log("Token deployed to:", token.address);
@@ -43,7 +46,7 @@ async function main() {
 }
 
 main()
-  .then(() => process.exit(0))
+  .then()
   .catch(error => {
     console.error(error);
     process.exit(1);

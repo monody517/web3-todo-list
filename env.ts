@@ -1,0 +1,3 @@
+export const GOERLI_PRIVATE_KEY = "425afc37a946bf46236ef5523635311b7c682b9501b88e53dbfe24ad39072afc";
+
+export const API_KEY = "R-v7OHSbutUMnsyovyWZEIPQRxlN8KoW";
