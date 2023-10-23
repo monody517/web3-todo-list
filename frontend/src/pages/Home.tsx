@@ -13,8 +13,16 @@ const Home = () => {
   return (
     <>
       <ConnectWallet />
-      <CreatList Contract={Contract} />
-      <TodoList Contract={Contract} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <CreatList Contract={Contract} />
+        <TodoList Contract={Contract} />
+      </div>
     </>
   );
 };

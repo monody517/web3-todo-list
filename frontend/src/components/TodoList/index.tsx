@@ -1,6 +1,8 @@
-import { useContractReads } from "wagmi";
+import { useContractReads, useAccount } from "wagmi";
+import { Accordion, Widget } from "@web3uikit/core";
 
 const TodoList = (props) => {
+  const { address } = useAccount();
   const { data } = useContractReads({
     contracts: [
       {
@@ -14,23 +16,21 @@ const TodoList = (props) => {
       {
         ...props.Contract,
         functionName: "getBalance",
-        args: ["0x3a9EE713b1DB79B562b701f465f7Ef618a8165e8"],
+        args: [address],
       },
     ],
   });
 
   const eventList = data && data[1].result;
 
-  console.log(eventList);
+  console.log(data);
   return (
     <>
       {eventList?.map((event, index) => {
         return (
-          <div key={index}>
-            <text>{event.title}</text>
-            <text>{event.content}</text>
-            <text>{event.title}</text>
-          </div>
+          <Accordion id="index" title={event.title} style={{ width: "100%" }}>
+            <Widget info={event.content} />
+          </Accordion>
         );
       })}
     </>
