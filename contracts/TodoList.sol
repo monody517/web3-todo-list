@@ -26,7 +26,8 @@ contract TodoList {
         bool isCompleted;
     }
 
-    mapping(address => Task[]) private tasks; // 任务列表
+    Task[] public tasks;
+    mapping(uint => address) private taskToOwner; // 任务拥有者地址
 
     event TaskCreated(
         uint256 id,
@@ -56,11 +57,11 @@ contract TodoList {
     }
 
     function getTasks() external view returns (Task[] memory) {
-        return tasks[msg.sender];
+        return tasks;
     }
 
     function getTask(uint256 _id) external view returns (Task memory) {
-        return tasks[msg.sender][_id - 1];
+        return tasks[_id - 1];
     }
 
     // 改变单次创建所需token
@@ -93,12 +94,10 @@ contract TodoList {
         );
 
         taskCount++;
-        tasks[msg.sender].push(
-            Task(taskCount, _title, _content, _level, false)
-        );
+        tasks.push(Task(taskCount, _title, _content, _level, false));
+        taskToOwner[taskCount] = msg.sender;
         _balances[msg.sender] -= creatAmount;
         tokenAmount += creatAmount;
-        emit TaskCreated(taskCount, _title, _content, _level, false);
     }
 
     function changeTask(
@@ -108,14 +107,14 @@ contract TodoList {
         string memory _level
     ) public {
         require(_id - 1 <= taskCount, "can't find this task");
-        tasks[msg.sender][_id - 1].title = _title;
-        tasks[msg.sender][_id - 1].content = _content;
-        tasks[msg.sender][_id - 1].level = _level;
+        tasks[_id - 1].title = _title;
+        tasks[_id - 1].content = _content;
+        tasks[_id - 1].level = _level;
         emit TaskChanged(_id - 1, _title, _content, _level, false);
     }
 
     function finishTask(uint256 _id) public {
-        tasks[msg.sender][_id - 1].isCompleted = true;
+        tasks[_id - 1].isCompleted = true;
         _balances[msg.sender] += completeAmount;
         tokenAmount -= completeAmount;
         emit TaskCompleted(_id - 1);

@@ -5,14 +5,14 @@ import {
 } from "wagmi";
 import {useState} from 'react'
 
-export const useWriteContract = (contract, args: any) => {
+export const useWriteContract = (contract: { address: `0x${string}`; abi: unknown; }, functionName:string,args?: unknown) => {
     
-    const [success, setSuccess] = useState(false)
+  const [success, setSuccess] = useState(false)
 
-    const { config } = usePrepareContractWrite({
+  const { config } = usePrepareContractWrite({
         address: contract.address,
         abi: contract.abi,
-        functionName: "transfer",
+        functionName: functionName,
         args: [...args],
         onError(error) {
         console.log("Error", error);
@@ -40,8 +40,8 @@ export const useWriteContract = (contract, args: any) => {
     },
   });
     
-    const loading = isWriteLoading || isTransactionLoading
-    const error = writeError || transactionError || isTransactionError
+  const loading = isWriteLoading || isTransactionLoading
+  const error = writeError || transactionError || isTransactionError
     
-    return [write,loading,error,success]
+  return [write,loading,error,success]
 }

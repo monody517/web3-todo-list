@@ -4,7 +4,8 @@
   "description": "quick start web3 template",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deploy": "npx hardhat run scripts/deploy.js --network goerli"
   },
   "repository": {
     "type": "git",
